@@ -8,10 +8,14 @@ __pycache__/
 env/
 venv/
 
-# Django static/media
-/productionfiles/
-/media/
+# Django static/media files
+**/productionfiles/
+**/staticfiles/
+**/media/
+*.sqlite3
 db.sqlite3
+
+
 
 # VSCode & IDEs
 .vscode/
