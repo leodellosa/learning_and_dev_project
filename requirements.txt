@@ -10,6 +10,7 @@ Django==4.2.20
 django-appconf==1.1.0
 django-browser-reload==1.18.0
 django-tailwind==3.4.0
+git-filter-repo==2.47.0
 idna==3.10
 Jinja2==3.1.6
 MarkupSafe==3.0.2
@@ -24,3 +25,4 @@ types-python-dateutil==2.9.0.20241206
 typing_extensions==4.13.2
 tzdata==2025.2
 urllib3==2.4.0
+whitenoise==6.9.0
