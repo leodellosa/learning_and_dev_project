@@ -21,22 +21,21 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project
-COPY learning_and_development/ .
+COPY learning_and_development/ /app/
 
-# Tailwind setup in theme app
-WORKDIR /app/theme
+# Move to the folder where Tailwind's package.json is
+WORKDIR /app/theme/static_src
 
 # Install Tailwind dependencies
 RUN npm install
 
-# Run tailwind install via django-tailwind (sets up static_src, config files)
-RUN python ../manage.py tailwind install
+# Set dummy env var so Django doesn't crash at build time
+ENV SECRET_KEY=dummy-build-secret
 
-# Build Tailwind CSS
-RUN python ../manage.py tailwind build
-
-# --- Static files collection ---
 WORKDIR /app
+RUN python manage.py tailwind install
+RUN python manage.py tailwind build
+
 RUN python manage.py collectstatic --noinput
 
 
