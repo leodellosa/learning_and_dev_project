@@ -32,5 +32,4 @@ Thumbs.db
 **/migrations/*.pyc
 **/migrations/__pycache__/
 **/migrations/*.pyo 
-**/migrations/
 learning_and_development/tailwindcss.exe
