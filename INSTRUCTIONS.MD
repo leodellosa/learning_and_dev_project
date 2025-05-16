@@ -18,14 +18,14 @@ This guide will help you set up and run the Django project using Docker.
 - cd Learning and Dev Project
 
 ## 3. Build the Docker Image
-- docker-compose build
+- docker build -t learning_and_development .
 
 ## 4. Run the Application
-- docker-compose up
+- docker run -d -p 8087:8087 learning_and_development
 
 ### This will:
 - Apply migrations
-- Start the Django development server at http://localhost:8000
+- Start the Django development server at http://localhost:8087
 
 
 

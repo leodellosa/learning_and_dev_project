@@ -8,8 +8,8 @@ __pycache__/
 # Django local database (optional – keep if you're using volumes)
 # db.sqlite3
 
-# Environment config
-.env
+# # Environment config
+# .env
 
 # macOS / editor junk
 .DS_Store

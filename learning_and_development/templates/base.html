@@ -11,8 +11,10 @@
 
 	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
         {% include 'navbar.html' %}
-        {% block content %}
-        {% endblock content %}
+		<main class="w-screen px-4">
+        	{% block content %}
+        	{% endblock content %}
+    	</main>
         
 		<script src="{% static 'js/menu-toggle.js' %}"></script>
 	</body>

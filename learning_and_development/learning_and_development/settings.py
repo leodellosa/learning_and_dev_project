@@ -26,14 +26,15 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = "django-insecure-e6#xpdz779=4rpco6w0p46#2=m50=%=feou9-8bib2p3_t0vom"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
-DEBUG = env.bool('DEBUG', default=True)
+DEBUG = True
+# DEBUG = env.bool('DEBUG', default=True)
 
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
 # Application definition
@@ -48,8 +49,7 @@ INSTALLED_APPS = [
     'user',
     'course',
     'tailwind',
-    'theme',
-    'django_browser_reload'
+    'theme'
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -69,9 +69,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+if os.environ.get("DJANGO_ENV") == "development":
+    INSTALLED_APPS += ['django_browser_reload']
+    MIDDLEWARE += ['django_browser_reload.middleware.BrowserReloadMiddleware']
 
 ROOT_URLCONF = 'learning_and_development.urls'
 

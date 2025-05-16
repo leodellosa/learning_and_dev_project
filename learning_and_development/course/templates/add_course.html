@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+{%include "form_messages.html" %}
+<div class="flex justify-center items-start min-h-screen px-4 pt-5 md:pt-10">
+    <form method="POST" class="w-full max-w-2xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+    {% csrf_token %}
+        <!-- Form Header -->
+        <h2 class="text-2xl font-bold text-red-700 dark:text-red-400 mb-6 text-center">Add Course</h2>
+
+        <!-- Title and Points -->
+        <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <input type="text" id="title" name="title" placeholder="Course Title"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" required>
+            </div>
+
+            <div>
+                <label for="points" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Points</label>
+                <input type="text" id="points" name="points" placeholder="Points"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" required>
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-6">
+            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+            <textarea id="description" name="description" rows="4" placeholder="Enter course description..."
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" required></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-between items-center mt-6">
+            <a href="{% url 'course_list' %}" class="text-red-700 hover:underline text-sm">← Back to Courses</a>
+            <button type="submit"
+                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                Submit
+            </button>
+        </div>
+
+    </form>
+</div>
+
+{% endblock content %}

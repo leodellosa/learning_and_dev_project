@@ -1,5 +1,5 @@
 # Use official Python base image
-FROM python:3.13-slim-bookworm
+FROM python:3.11-slim
 
 
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -30,7 +30,7 @@ WORKDIR /app/learning_and_development/theme/static_src
 RUN npm install
 
 # Set dummy env var so Django doesn't crash at build time
-ENV SECRET_KEY=dummy-build-secret
+# ENV SECRET_KEY=dummy-build-secret
 
 WORKDIR /app/learning_and_development
 RUN python manage.py tailwind install
@@ -41,5 +41,8 @@ RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
 
+# Expose the application port
+EXPOSE 8087
+
 # Start Django
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "learning_and_development.wsgi:application", "--bind", "0.0.0.0:8087", "--timeout", "90"]

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-
+{%include "form_messages.html" %}
 <div class="max-w-4xl mx-auto p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    
     <!-- Course Image -->
     {% if course.image_url %}
     <div class="flex justify-center mb-4">
@@ -18,23 +19,28 @@
     </div>
 
     <!-- Course Description -->
-    <div class="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-6 ">
+    <div class="text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-6">
         {{ course.description }}
     </div>
 
     <!-- Course Details -->
     <div class="grid grid-cols-2 gap-4 text-base text-gray-600 dark:text-gray-400">
         <div class="flex items-center space-x-2">
-          <span class="font-semibold text-gray-800 dark:text-gray-200">Points:</span>
-          <h5 class="text-lg">{{ course.points }}</h5>
+            <span class="font-semibold text-gray-800 dark:text-gray-200">Points:</span>
+            <h5 class="text-lg">{{ course.points }}</h5>
         </div>
     </div>
-      
 
-    <!-- Back Button -->
-    <div class="mt-6 py-2">
+    <!-- Action Buttons -->
+    <div class="mt-6 flex justify-between flex-wrap gap-2">
+        <!-- Back Button -->
         <a href="{% url 'course_list' %}" class="inline-block bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium px-4 py-2 rounded">
             ← Back to Course List
+        </a>
+
+        <!-- Edit Button -->
+        <a href="{% url 'course_update' course.id %}" class="inline-block bg-red-700 hover:bg-red-800 text-white text-sm font-medium px-4 py-2 rounded">
+            ✏️ Edit Course
         </a>
     </div>
 </div>
