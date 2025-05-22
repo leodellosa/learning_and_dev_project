@@ -14,3 +14,13 @@ __pycache__/
 # macOS / editor junk
 .DS_Store
 *.swp
+
+# Logs
+*.log
+
+# Editor folders
+.vscode/
+.idea/
+
+# Node stuff (not needed in final image)
+**/node_modules

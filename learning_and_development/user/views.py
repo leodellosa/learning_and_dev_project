@@ -3,14 +3,14 @@ from .forms import UserForm
 from .models import User
 from django.db.models import Q
 from django.contrib import messages
-from learning_and_development.config import USER_API_URL,DJANGO_ENV
+from learning_and_development.config import USER_API_URL,DJANGO_ENV, RUN_LOCAL
 import requests
  
 def index(request):
     return render(request, 'base.html')
 
 def user_list(request):
-    if DJANGO_ENV == 'production':
+    if DJANGO_ENV == 'production' and not RUN_LOCAL:
         base_url = f"{USER_API_URL}/users/"
         try:
             response = requests.get(base_url)
@@ -21,7 +21,7 @@ def user_list(request):
                 messages.error(request, f"Error fetching users: {response.status_code}")
                 return render(request, 'user_list.html', {'users': []})
         except requests.exceptions.RequestException as e:
-            print(e)
+            # print(e)
             messages.error(request, f"Error fetching users: {e}")
             return render(request, 'user_list.html', {'users': []})
     else:
@@ -35,13 +35,13 @@ def user_list(request):
         return render(request, 'user_list.html', {'users': user,'query': query})
 
 def user_detail(request, id):
-    if (DJANGO_ENV == 'production'):
+    if (DJANGO_ENV == 'production') and not RUN_LOCAL:
         base_url = f"{USER_API_URL}/users/{id}"
         try:
             response = requests.get(base_url)
             user = response.json()
             if response.status_code == 200:
-                print(user)
+                # print(user)
                 return render(request, 'user_detail.html', {'user': user})
             else:
                 messages.error(request, f"Error fetching users: {response.status_code}")
