@@ -7,7 +7,7 @@ from learning_and_development.config import COURSE_API_URL,DJANGO_ENV, RUN_LOCAL
 import requests
  
 def course_list(request):
-    # print(f"DJANGO_ENV: {DJANGO_ENV}")
+    print(f"DJANGO_ENV: {DJANGO_ENV} and RUN_LOCAL: {RUN_LOCAL}")
     if DJANGO_ENV == 'production' and not RUN_LOCAL:
         base_url = f"{COURSE_API_URL}/courses/"
         try:
