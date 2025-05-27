@@ -11,7 +11,7 @@ def course_list(request):
     print(f"DJANGO_ENV: {DJANGO_ENV} and RUN_LOCAL: {RUN_LOCAL}")
     print(f"COURSE_API_URL: {COURSE_API_URL}")
     if DJANGO_ENV == 'production' and not RUN_LOCAL:
-        base_url = f"{COURSE_API_URL}/courses/"
+        base_url = f"{COURSE_API_URL}/courses"
         print(f"Requesting courses from backend API at: {base_url}")
         try:
             response = requests.get(base_url)

@@ -13,7 +13,7 @@ def user_list(request):
     print(f"DJANGO_ENV: {DJANGO_ENV} and RUN_LOCAL: {RUN_LOCAL}")
     print(f"USER_API_URL: {USER_API_URL}")
     if DJANGO_ENV == 'production' and not RUN_LOCAL:
-        base_url = f"{USER_API_URL}/users/"
+        base_url = f"{USER_API_URL}/users"
         try:
             response = requests.get(base_url)
             usersData = response.json()
