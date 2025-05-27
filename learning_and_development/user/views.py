@@ -10,11 +10,14 @@ def index(request):
     return render(request, 'base.html')
 
 def user_list(request):
+    print(f"DJANGO_ENV: {DJANGO_ENV} and RUN_LOCAL: {RUN_LOCAL}")
+    print(f"USER_API_URL: {USER_API_URL}")
     if DJANGO_ENV == 'production' and not RUN_LOCAL:
         base_url = f"{USER_API_URL}/users/"
         try:
             response = requests.get(base_url)
-            users = response.json()
+            usersData = response.json()
+            users = usersData.get('data', [])
             if response.status_code == 200:
                 return render(request, 'user_list.html', {'users': users})
             else:
