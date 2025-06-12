@@ -26,6 +26,7 @@ Before running the project, ensure you have the following installed:
 
 ## 4. Set Up Tailwind CSS
 #### Since Tailwind CSS is used for styling, run the following to set up Tailwind:
+- cd learning_and_development
 - python manage.py tailwind install
 
 ## 5. Set Up the Database
@@ -48,6 +49,7 @@ Before running the project, ensure you have the following installed:
 
 ## 9. Tailwind CSS
 #### For development with hot-reloading:
+- open new gitbash terminal
 - python manage.py tailwind start
 
 #### If you're preparing for production:

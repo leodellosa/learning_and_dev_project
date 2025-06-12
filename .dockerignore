@@ -9,7 +9,7 @@ __pycache__/
 # db.sqlite3
 
 # # Environment config
-# .env
+.env
 
 # macOS / editor junk
 .DS_Store

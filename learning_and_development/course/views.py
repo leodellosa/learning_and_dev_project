@@ -5,11 +5,14 @@ from django.db.models import Q
 from django.contrib import messages
 from learning_and_development.config import COURSE_API_URL,DJANGO_ENV, RUN_LOCAL
 import requests
+
  
 def course_list(request):
-    # print(f"DJANGO_ENV: {DJANGO_ENV}")
+    print(f"DJANGO_ENV: {DJANGO_ENV} and RUN_LOCAL: {RUN_LOCAL}")
+    print(f"COURSE_API_URL: {COURSE_API_URL}")
     if DJANGO_ENV == 'production' and not RUN_LOCAL:
-        base_url = f"{COURSE_API_URL}/courses/"
+        base_url = f"{COURSE_API_URL}/courses"
+        print(f"Requesting courses from backend API at: {base_url}")
         try:
             response = requests.get(base_url)
             courses = response.json()
@@ -32,8 +35,8 @@ def course_list(request):
             courses = Course.objects.all()
         return render(request, 'course_list.html', {'courses': courses, 'query': query})
 
-def course_detail_by_title(request, title):
-    base_url = f"{COURSE_API_URL}/course/details/{title}"
+def course_detail_by_id(request, id):
+    base_url = f"{COURSE_API_URL}/course/details/{id}"
     try:
         response = requests.get(base_url)
         course = response.json()
@@ -47,10 +50,6 @@ def course_detail_by_title(request, title):
     except requests.exceptions.RequestException as e:
             messages.error(request, f"Error fetching courses: {e}")   
             return render(request, 'course_list.html', {'courses': []})
-    
-def course_detail_by_id(request,id):
-    course = get_object_or_404(Course, id=id)
-    return render(request, 'course_detail.html', {'course': course})
 
 def course_create(request):
     if request.method == 'POST':
